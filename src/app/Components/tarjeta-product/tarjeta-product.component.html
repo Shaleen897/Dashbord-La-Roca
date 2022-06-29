@@ -1,0 +1,80 @@
+<div class="main">
+  <div class="animated fadeIn fast">
+    <div class="content" style="color: white;">
+      <h1>{{titulo}}</h1>
+      <form action="#" [formGroup]="crearProducto" (ngSubmit)="agregarEditarProducto()">
+
+        <div class="field space">
+          <select formControlName="departamento" name="departamento" id="" value=""
+            style="width: 100%; text-transform: capitalize;">
+            <option selected value="">Selecciona un Departamento</option>
+            <option value="automotriz">Automotriz</option>
+            <option value="construccion">Construcción</option>
+            <option value="cerrajeria">Cerrajería</option>
+            <option value="electricidad">Electricidad</option>
+            <option value="herramientas">Herramientas</option>
+            <option value="jardineria">Jardinería</option>
+            <option value="maquinarias">Maquinarias</option>
+            <option value="pinturas">Pinturas</option>
+            <option value="plomeria">Plomería</option>
+          </select>
+        </div>
+
+        <div class="field space">
+
+          <button type="button" class="contenedor-btn-file bordeado">
+            <i class="fas fa-image"></i>
+            Subir img imagen
+            <label for="btn-file"></label>
+            <input type="file" class="subirimg" id="btn-file" accept="(.png),.png, .jpg, .PNG, .JPG, .jpeg, .JPEG"
+              name="img" (change)="onUploadImg($event)" placeholder="Image">
+          </button>
+
+          <input type="text" formControlName="img" [value]="urlImage|async" [(ngModel)]="imagen">
+
+        </div>
+        <div class="field space">
+          <input type="text" name="codigo" formControlName="codigo" placeholder="Codigo">
+        </div>
+
+        <div class="field space">
+          <input type="text" name="producto" formControlName="producto" placeholder="Producto">
+        </div>
+
+        <div class="field space">
+          <input type="number" formControlName="precio" placeholder="Precio" name="precio">
+        </div>
+        <div class="field space">
+          <input type="number" formControlName="descuento" name="descuento" placeholder="Descuento en decimales">
+        </div>
+
+        <div class="field space">
+          <input type="number" name="existencia" formControlName="existencia" placeholder="Existencia">
+        </div>
+
+        <div class="field space">
+          <input type="text" minlength="10" maxlength="120" name="descripcion" formControlName="descripcion"
+            placeholder="Descripcion">
+        </div>
+
+        <div class=" space">
+          <div class="btn-group" style="width: 100%;">
+
+            <a class="btn btn-outline color" routerLink="/productos">
+              <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Ir A Productos</a>
+
+            <a class="btn btn-outline color1 color" routerLink="/departamento" style="color: white;">
+              <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Ir Al Departamento</a>
+
+          </div>
+        </div>
+
+        <div class="space">
+          <button type="submit" class="btn color" style="width: 100%;">Añadir</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

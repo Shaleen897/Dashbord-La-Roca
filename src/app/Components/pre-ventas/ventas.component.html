@@ -1,0 +1,100 @@
+<div class="main animated fadeIn fast">
+  <header id="main-header" class="py-2 bgo text-white ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 *ngIf="isloggedInAdm">
+            {{admin}}
+          </h1>
+          <div class="btn-group" style=" float: right;">
+            <div>
+              <h4>Buscar Estado >>>  </h4>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="estadoPagadaempresa()">Pagada Empresa</button>
+            <button type="button" class="btn btn-success" (click)="estadoPagadaonline()">Pagada en linea</button>
+            <button type="button" class="btn btn-danger" (click)="estadoCancelada()">Cancelada</button>
+            <button type="button" class="btn btn-warning" (click)="estadoEspera()">Espera</button>
+            <button type="button" class="btn btn-dark" (click)="estadoEnviada()">Enviada</button>
+          </div>
+          <div>
+            <h4 *ngIf="isloggedInAdm"> Cantidad de Pedidos: {{pedidoadm.length}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-4 animated fadeIn fast" *ngIf="isloggedInAdm">
+    <div class="admin">
+      <div class="card-body">
+
+        <h5 class="bajo" style="color: white;" *ngIf="pedidoadm.length == 0">No hay datos para mostrar</h5>
+        <table class=" table-striped mt-5 " *ngFor="let ordenes of pedidoadm; index as i">
+          <thead class="table">
+            <th>Orden: {{ordenes.ordenNum}}</th>
+            <th>Estado: {{ordenes.estado}}</th>
+            <th>Fecha: {{ordenes.fecha.toDate() | date:'dd/MM/yyyy'}}</th>
+            <th></th>
+            <tr>
+
+              <th>Codigo Producto</th>
+
+              <th>Nombre Producto</th>
+
+              <th>Cantidad</th>
+
+              <th>Pago Total</th>
+
+
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr class="text" *ngFor="let ordena of ordenes.orden">
+
+              <td></td>
+
+              <td style="color: black;">{{ordena.producto.codigo}}</td>
+
+              <td style="color: black;">{{ordena.producto.producto}}</td>
+
+              <td style="color: black;">{{ordena.cantidad}}</td>
+
+              <td style="color: black;">{{ordena.subTotal |currency}}</td>
+
+            </tr>
+            <h5 style="color: black;">Total: RD{{ordenes.total|currency}}</h5>
+
+            <div class="from-group" style="display: flex;">
+              <a [routerLink]="['/modal/',ordenes.id]" type="button" class="btn btn-primary" style="margin: 0px;">
+                <strong>I</strong>NFO Cliente...
+              </a>
+
+              <a *ngIf="add !== i" (click)="addEstado(i)" [routerLink]="['/ventas/', ordenes.id]" type="button"
+                class="btn btn-success" style="float: none;">Actualizar Estado
+                <i class="fas fa-sync    "></i>
+              </a>
+
+              <div *ngIf="add === i" style="float: none;" class="btn-group">
+                <select class="form-control" #estado>
+                  <option value="" selected disabled hidden>Seleccione Aqui</option>
+                  <option value="Pagada Empresa">Pagada Empresa</option>
+                  <option value="Enviada">Enviada</option>
+                  <option value="Cancelada">Cancelada</option>
+                  <option value="Espera">Espera</option>
+                  <option value="Pagada en linea">Pagada en linea</option>
+                </select>
+                <a (click)="estadoDePago(estado.value)" type="button" class="btn btn-success">Actualizar
+                </a>
+              </div>
+            </div>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

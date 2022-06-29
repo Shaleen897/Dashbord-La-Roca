@@ -1,0 +1,85 @@
+<div class="main">
+  <header id="main-header" class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>
+            <i class="fab fa-product-hunt left" aria-hidden="true"></i>roductos De La Casa <i
+              style="margin-left: 100px;" *ngIf="isloggedInAdm" class="fa fa-plus movera" routerLink="/tarjetas"
+              aria-hidden="true"></i>
+          </h1>
+        </div>
+        <div class="col-md">
+          <h4 *ngIf="isloggedInAdm" class="movera">{{productos.length}} productos en existencia</h4>
+        </div>
+        <div class="form-group mt-3">
+          <input class="form-control tama" type="text" [(ngModel)]="nombre" (input)="buscarProducto()"
+            placeholder="Busque un Producto">
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="products mb-4 animated fadeIn fast" *ngIf="isloggedInAdm">
+    <div class="container" style="margin: auto;">
+      <h5 class="animated fadeIn fast bajo" style="margin-top: 30px;" *ngIf="productos.length == 0 ">
+        No hay datos para mostrar
+      </h5>
+      <div class="product-items bajo" style="margin-top: 30px;">
+        <!-- single product -->
+        <div class="product" *ngFor="let producto of productos">
+          <div class="product-content">
+            <div class="product-img">
+              <img src="{{producto.img}}" alt="product image">
+            </div>
+          </div>
+
+          <div class="product-info">
+
+            <h2 class="sm-title depart">{{producto.departamento}}</h2>
+
+            <div class="product-info-top">
+
+              <div class="productname">
+                <a href="#" class="product-name">{{producto.producto}}</a>
+              </div>
+              <small class="cantidad">{{producto.cantidad}}</small>
+            </div>
+
+            <p class="product-price">{{producto.precio | currency}}</p>
+            <p class="product-price" *ngIf="producto.descuento > 0">
+              {{producto.precio  * producto.descuento - producto.precio  | currency}}</p>
+
+
+            <div class="product-btns">
+              <button *ngIf="!isloggedInAdm" type="button" class="btn1 btn">Cesta
+                <span><i class="fas fa-plus"></i></span>
+              </button>
+              <button *ngIf="!isloggedInAdm" type="button" class="btn1 btn"> Comprar
+                <span><i class="fas fa-shopping-cart"></i></span>
+              </button>
+
+              <i *ngIf="isloggedInAdm" class="fas fa-edit text-info fa-lg movera mt-2"
+                [routerLink]="['/editarTarjeta/', producto.id]"></i>
+
+              <i *ngIf="isloggedInAdm" (click)="eliminarProducto(producto.id)"
+                class="fas fa-trash-alt text-danger fa-lg movera mt-2"></i>
+
+            </div>
+          </div>
+
+
+          <div *ngIf="producto.descuento > 0" class="off-info">
+            <h2 class="sm-title"> {{producto.descuento * 100}}% off</h2>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

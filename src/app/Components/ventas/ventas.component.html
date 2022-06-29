@@ -1,0 +1,77 @@
+<div class="main animated fadeIn fast">
+  <header id="main-header" class="py-2 bgo text-white ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 *ngIf="loggedInUser && !isloggedInAdm">
+            {{user}}
+          </h1>
+          <h1 *ngIf="isloggedInAdm">
+            {{admin}}
+          </h1>
+          <div>
+            <h4 *ngIf="isloggedInAdm"> Cantidad de Pedidos: {{pedidoadm.length}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-4 animated fadeIn fast" *ngIf="isloggedInAdm">
+    <div class="admin">
+      <div class="card-body">
+
+        <h5 class="bajo" *ngIf="pedidoadm.length == 0">No hay datos para mostrar</h5>
+        <table class=" table-striped mt-5 " *ngFor="let ordenes of pedidoadm">
+          <thead class="table">
+            <th>Orden: {{ordenes.ordenNum}}</th> <th>Fecha: {{ordenes.fecha.toDate() | date:'dd/MM/yyyy'}}</th>
+            <tr>
+              <th></th>
+              
+              <th>Codigo Producto</th>
+              
+              <th>Nombre Producto</th>
+             
+              <th>Cantidad</th>
+            
+              <th>Pago Total</th>
+              
+              <th>Estado de Pago</th>
+              
+             
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr class="text" *ngFor="let ordena of ordenes.orden">
+
+              <td></td>
+              
+              <td style="color: black;">{{ordena.producto.codigo}}</td>
+              
+              <td style="color: black;">{{ordena.producto.producto}}</td>
+              
+              <td style="color: black;">{{ordena.cantidad}}</td>
+             
+              <td style="color: black;">{{ordena.subTotal |currency}}</td>
+              
+              <td style="color: black;">{{ordenes.estado}}</td>
+             
+            </tr>
+            <h5 style="color: black;">Total: RD{{ordenes.total|currency}}</h5>
+
+            <a [routerLink]="['/modal/',ordenes.id]"
+             type="button" class="btn btn-primary mt-3">
+             Detalles de Cliente...
+            </a>
+
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="main container fo animated fadeIn fast">
+
+  <div  class="texcar">
+    <h1>Detalles del Pedido de Cliente</h1>
+  </div>
+      <div class="cart1">
+        <div class="products">
+  
+          <div class="product">
+  
+            <img src="">
+  
+            <div class="product-info" *ngFor="let pedidocliente of pedidoDetalle.cliente">
+
+              <h5 class="product-name" name="producto"><strong>Nombre: </strong>{{pedidocliente.nombre}}</h5>
+              <hr>
+              <h6 class="product-depart" name="departamento"><strong>Apellido: </strong>{{pedidocliente.apellido}}</h6>
+              <br>
+              <h6 class="product-depart" name="departamento"><strong>Email: </strong>{{pedidocliente.email}} </h6>
+              <br>
+              <h6 class="product-offer" name="descuento"><strong>Telefono: </strong>{{pedidocliente.telefono}}</h6>
+              <br>
+              <h6 class="product-price" name="precio"><strong>Direccion: </strong>{{pedidocliente.direccion}}</h6>
+              <br>
+              <h6 class="product-depart" name="departamento"><strong>Fecha de Creacion: </strong>{{pedidocliente.fechaCreacion.toDate() | date:'dd/MM/yyyy'}} </h6>
+              <br>
+              <p class="product-quantity"><strong> </strong> </p>
+               
+         </div>
+       </div>
+          
+    </div>
+   </div>
+
+
+</div>

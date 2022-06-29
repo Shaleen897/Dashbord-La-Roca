@@ -1,0 +1,93 @@
+<div class="main animated fadeIn fast">
+  <header id="main-header" class="py-2 bgo text-white ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 *ngIf="isloggedInAdm">
+           <i class="fa fa-credit-card" aria-hidden="true"></i> {{admin}}
+          </h1>
+          <div class="btn-group" style=" float: right;">
+            <div>
+              <h4>Buscar Estado >>>  </h4>
+            </div>
+            
+            <button type="button" class="btn btn-primary" (click)="estadoPagadaempresa()">Pagada Empresa</button>
+            <button type="button" class="btn btn-success" (click)="estadoPagadaonline()">Pagada en linea</button>
+            <button type="button" class="btn btn-danger" (click)="estadoCancelada()">Cancelada</button>
+            <button type="button" class="btn btn-warning" (click)="estadoEspera()">Espera</button>
+            <button type="button" class="btn btn-dark" (click)="estadoEnviada()">Enviada</button>
+          </div>
+          <div>
+            <h4 *ngIf="isloggedInAdm"> Cantidad de Pedidos: {{pagosOnline.length}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <input type="text" class="form-control" (input)="estadoEnproceso()" [(ngModel)]="orden" placeholder="Buscar Codigo De Orden">
+  <div class="container mt-4 animated fadeIn fast" *ngIf="isloggedInAdm">
+    <div class="admin">
+      <div class="card-body">
+
+        <h5 class="bajo" style="color: white;" *ngIf="pagosOnline.length == 0">No hay datos para mostrar</h5>
+        <table class=" table-striped mt-5 " *ngFor="let infoPago of pagosOnline">
+          <thead class="table">
+            <th >Orden: {{infoPago.orden.ordenNum}}</th> <th>Fecha: {{infoPago.fechaCreacion.toDate() | date:'dd/MM/yyyy'}}</th>
+            <tr>
+              
+              <th>Nombre en la tajeta</th>
+              
+              <th>Tarjeta Num</th>
+              <th>Mes</th>
+              <th>Año</th>
+              <th>Cvv</th>
+             
+              <th>Direccion</th>
+            
+              <th>Email</th>
+              <th>Estado</th>
+              
+              
+              
+             
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr class="text" >
+
+              <td></td>
+              <td style="color: black;">{{infoPago.namecard}}</td>
+              
+              <td style="color: black;">{{infoPago.cardnumber}}</td>
+              
+              <td style="color: black;">{{infoPago.mescard}}</td>
+             
+              <td style="color: black;">{{infoPago.yearcard}}</td>
+              
+              <td style="color: black;">{{infoPago.cvv}}</td>
+
+              <td style="color: black;">{{infoPago.direccion}}</td>
+
+              <td style="color: black;">{{infoPago.email}}</td>
+              <td style="color: black;">{{infoPago.orden.estado}}</td>
+             
+            </tr>
+            <h5 style="color: black;">Total: RD{{infoPago.orden.total|currency}}</h5>
+
+            <div class="btn-group">
+            <a [routerLink]="['/detallepago/',infoPago.id]"
+             type="button" class="btn btn-primary">
+             Full Orden...
+            </a>
+          <!--  <button type="button" style="float: right;" class="btn btn-success">Cobrar Orden</button>-->
+          </div>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>

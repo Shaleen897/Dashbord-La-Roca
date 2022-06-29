@@ -1,0 +1,75 @@
+<div class="main animated fadeIn fast">
+
+<div *ngIf="isloggedInAdm">
+  <header id="main-header" class="py-2 bgo text-white animated fadeIn fast">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Lista de Usuarios
+          </h1>
+          <div>
+            <h4>Existen: {{usersAdm.length}} Usuarios</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-4 animated fadeIn fast">
+    <div class="fo">
+      <div>
+        <input type="text" class="largo form-control" name="emails" 
+        [(ngModel)]="emails"
+        (input)="buscarEmail()" 
+        placeholder="Buscar Email con la informaciones del cliente">
+
+      </div>
+      <div class="card-body">
+
+        <h5 class="bajo animated fadeIn fast" *ngIf="usersAdm.length == 0 ">No hay datos para mostrar</h5>
+        <table *ngIf="usersAdm.length > 0" class="table table-striped mt-5">
+          <thead class="table">
+            <tr>
+              <th scope="col">ID</th>
+              <th></th>
+              <th scope="col">Nombre</th>
+              <th></th>
+              <th scope="col">Apellido</th>
+              <th></th>
+              <th scope="col">Email</th>
+              <th></th>
+              <th scope="col">Telefono/celular</th>
+              <th></th>
+              <th scope="col">Direccion</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr class="text" *ngFor="let useAdm of usersAdm">
+
+              <td>{{useAdm.uid}}</td>
+              <td></td>
+              <td>{{useAdm.nombre}}</td>
+              <td></td>
+              <td>{{useAdm.apellido}}</td>
+              <td></td>
+              <td>{{useAdm.email}}</td>
+              <td></td>
+              <td>{{useAdm.telefono}}</td>
+              <td></td>
+              <td>{{useAdm.direccion}}</td>
+
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

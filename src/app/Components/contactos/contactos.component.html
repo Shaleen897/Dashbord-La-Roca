@@ -1,0 +1,56 @@
+<div class="main">
+  <header id="main-header" class="py-2 bgo text-white animated fadeIn fast">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+            Contactos
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container mt-4 animated fadeIn fast">
+    <div class="">
+      <div class="card-body">
+
+        <h5 class="bajo" *ngIf="contactos.length == 0 ">No hay datos para mostrar</h5>
+        <table *ngIf="contactos.length > 0" class="table table-striped mt-5">
+          <thead class="table">
+            <tr>
+              <th scope="col" style="color: black;">Nombre</th>
+              <th></th>
+              <th scope="col" style="color: black;">Email</th>
+              <th></th>
+              <th scope="col" style="color: black;">Telefono/celular</th>
+              <th></th>
+              <th scope="col" style="color: black;">Mensaje</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr class="text" *ngFor="let contacto of contactos">
+
+              <td style="color: black;">{{contacto.nombre}}</td>
+              <td style="color: black;"></td>
+              <td style="color: black;">{{contacto.email}}</td>
+              <td style="color: black;"></td>
+              <td style="color: black;">{{contacto.telefono}}</td>
+              <td></td>
+              <td style="color: black;"><textarea class="tarea" disabled cols="80" rows="10">{{contacto.mensaje}}</textarea></td>
+              <td>
+                <i (click)="eliminarContacto(contacto.id)" class="fas fa-trash-alt text-danger fa-lg"></i>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

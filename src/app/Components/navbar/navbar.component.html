@@ -1,0 +1,25 @@
+
+    
+   
+    
+
+  
+            <!--
+        <li *ngIf="isloggedInAdm"><a [routerLink]="['/configuracion']">Configuracion</a></li>
+ -->
+
+
+
+
+<div id="mySidenav" class="sidenav heig" *ngIf="isloggedInAdm && loggedInUser == admUser">
+	<p class="logo"><a [routerLink]="['/']" routerLinkActive="router-link-active"><img
+    src="../../../assets/Block-Industrial-San-Pedro.ico" height="60px" alt=""></a></p>
+  <a [routerLink]="['/']" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
+  <a [routerLink]="['/infoperfil']" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;CLientes</a>
+  <a [routerLink]="['/productos']" class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Productos</a>
+  <a [routerLink]="['/ventas']" class="icon-a"><i class="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Pre-Orders</a>
+  <a [routerLink]="['/pagosonline']"class="icon-a"><i class="fa fa-credit-card icons"></i> &nbsp;&nbsp;Pagos Online</a>
+  <a [routerLink]="['/contactos']" class="icon-a"><i class="fa fa-address-book icons"></i> &nbsp;&nbsp;Contactos</a>
+  <a style="cursor: pointer" (click)="logout()" class="icon-a"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;Salir</a>
+ 
+</div>

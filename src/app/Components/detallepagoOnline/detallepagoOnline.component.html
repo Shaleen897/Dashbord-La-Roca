@@ -1,0 +1,111 @@
+<div class="main container fo animated fadeIn fast">
+
+  <div class="texcar">
+    <h1>Informacion del Pedido</h1>
+    <hr>
+  </div>
+  <div class="cart1">
+    <div class="products">
+
+      <div class="producto">
+
+        <div class="product-info">
+
+          <h5 class="product-name" name="producto"><strong>Nombre: </strong>{{fullinfo.nombre}}</h5>
+          <br>
+          <h6 class="product-depart" name="departamento"><strong>User Id: </strong>{{fullinfo.uids}}</h6>
+          <br>
+          <h6 class="product-depart" name="departamento"><strong>Email: </strong>{{fullinfo.email}} </h6>
+          <br>
+          <h6 class="product-offer" name="descuento"><strong>Pueblo: </strong>{{fullinfo.pueblo}}</h6>
+          <br>
+          <h6 class="product-offer" name="descuento"><strong>Zip: </strong>{{fullinfo.codigozip}}</h6>
+          <h6 class="product-price" name="precio"><strong>Direccion: </strong>{{fullinfo.direccion}}</h6>
+          <br><br>
+          <h6 class="product-depart" name="departamento"><strong>Fecha:
+            </strong>{{fullinfo.fechaCreacion.seconds * 1000 | date:'dd/MM/yyyy'}} </h6>
+          <br>
+          <p class="product-quantity"><strong> </strong> </p>
+
+        </div>
+
+        <div class="card-group">
+          <div class="card">
+            <div class="logo"><img src="../../../assets/mc.png" alt="masteC"></div>
+            <div class="logo1"><img src="../../../assets/vi.png" alt="Visa"></div>
+            <div class="chip"><img src="../../../assets/chipcard.jpg" alt="chip"></div>
+            <div class="number">{{fullinfo.cardnumber}}</div>
+            <div class="name">{{fullinfo.namecard}}</div>
+            <div class="from">{{fullinfo.mescard}}/{{fullinfo.yearcard}}</div>
+            <div class="to">CVV: {{fullinfo.cvv}}</div>
+          </div>
+        </div>
+
+      </div>
+      <br><br>
+      <hr>
+      <div  style="display: flex;">
+      <h5 style="margin-right: 15px;">Orden: {{fullinfo.orden.ordenNum}} </h5> 
+      <h5 style="margin-right: 15px;"> Total: {{fullinfo.orden.total|currency}}</h5>
+      <h5 style="margin-right: 15px;"> Estado: {{fullinfo.orden.estado}}</h5>
+      
+      <a *ngIf="add == false" (click)="addEstado(i)" type="button"
+                class="btn btn-success" style="float: none;">Actualizar Estado
+                <i class="fas fa-sync    "></i>
+              </a>
+      
+      <div *ngIf="add == true" style="float: none;" class="btn-group">
+        <select class="form-control" #estado>
+          <option value="" selected disabled hidden>Seleccione Aqui</option>
+          <option value="Pagada Empresa">Pagada Empresa</option>
+          <option value="Enviada">Enviada</option>
+          <option value="Cancelada">Cancelada</option>
+          <option value="Espera">Espera</option>
+          <option value="Pagada en linea">Pagada en linea</option>
+        </select>
+        <a (click)="estadoDePago(estado.value)" type="button" class="btn btn-success">Actualizar
+        </a>
+       </div>
+       </div>
+      <hr>
+
+      <div class="product-items">
+        <div class="product" *ngFor="let infoOrden of fullinfo.orden.orden">
+          <div class="product-content">
+            <div class="product-img">
+              <img src="{{infoOrden.producto.img}}" alt="product image">
+            </div>
+          </div>
+
+          <div class="product-info">
+
+            <h2 class="sm-title depart">{{infoOrden.producto.departamento}}</h2>
+
+            <div class="product-info-top">
+
+              <div class="productname">
+                <a href="#" class="product-name">{{infoOrden.producto.producto}}</a>
+                <small>Codigo: {{infoOrden.producto.codigo}}</small>
+              </div>
+              
+            </div>
+            <p class="product-price">Precio por unidad: {{infoOrden.producto.precio | currency}}</p>
+
+            <p class="cantidad">Cantidad: {{infoOrden.cantidad}}</p>
+            <p class="cantidad">Sub-Total: {{infoOrden.subTotal| currency}}</p>
+            <p class="product-price" *ngIf="infoOrden.producto.descuento > 0">
+              {{infoOrden.producto.precio  * infoOrden.producto.descuento - infoOrden.producto.precio  | currency}}</p>
+            </div>
+          
+            <p class="cantidad" style="text-align: justify;">Descuento: {{infoOrden.producto.descripcion}}</p>
+
+          <div *ngIf="infoOrden.producto.descuento > 0" class="off-info">
+            <h2 class="sm-title"> {{infoOrden.producto.descuento * 100}}% off</h2>
+          </div>
+         
+      </div>
+    </div>
+  </div>
+
+
+</div>
